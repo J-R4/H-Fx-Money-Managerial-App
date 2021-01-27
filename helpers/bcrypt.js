@@ -10,4 +10,8 @@ function hash(password, salt = 10) {
     return bcrypt.hashSync(password, s);
 }
 
-module.exports = hash;
+function compare(password, hash) {
+    return bcrypt.compareSync(password, hash);
+}
+
+module.exports = { hash, compare };
