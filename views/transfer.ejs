@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Transfer</title>
+    </head>
+    <body>
+        <h1>Transfer</h1>
+        <%- include('./partials/userNav.ejs') %>
+        <form action="/user/transfer/:id" method="POST">
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email"><br />
+            <label for="bank_name"> Bank Name : </label>
+                <select name="bank_name" id="bank_name" />
+                    <option value="">--Select--</option>
+                    <%for ( let i = 0; i < options.length; i++ ) { %>
+                    <option value="<%=options[ i ] %>"><%= options[i] %></option>
+                    <% } %>
+                </select> <br />
+            <!--  -->
+            <label for="amount"> Amount : </label>
+            <input type="number" name="amount" id="amount" /><br />
+            <!--  -->
+            <input type="submit" value="deposit" />
+        </form>
+    </body>
+</html>

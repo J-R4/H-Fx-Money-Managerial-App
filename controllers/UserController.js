@@ -1,9 +1,21 @@
 const { User } = require('../models');
 
 class UserController {
-    // router.get('/user/:id', UserController.userPage);
-    // router.get('/user/deposit/:id', UserController.deposit);
-    // router.get('/user/transfer/:id', UserController.transfer);
+    static userPage(req, res) {
+        //
+    }
+
+    static deposit(req, res) {
+        //
+    }
+
+    static transfer(req, res) {
+        //
+    }
+
+    static destroy(req, res) {
+        //
+    }
 }
 
 module.exports = UserController;
