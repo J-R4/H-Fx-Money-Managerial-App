@@ -40,11 +40,14 @@ class IndexController {
             .then((user) => {
                 if (compare(password, user.password)) {
                     req.session.user = true;
+                    console.log('ini di if fo');
+                    // res.redirect('/user');
+                    res.send('ini loing');
+                } else {
+                    console.log('ini di if else');
+                    // res.redirect('/login');
+                    res.send('ini login');
                 }
-                console.log(password);
-                console.log(user.password);
-                // res.redirect('/user');
-                res.send('berhasil berhasil berhasil uyey');
             })
             .catch((err) => {
                 res.send(err.message);
