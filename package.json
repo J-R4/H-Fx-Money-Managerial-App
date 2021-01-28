@@ -1,0 +1,27 @@
+{
+  "name": "H-Fx-Money-Managerial-App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J-R4/H-Fx-Money-Managerial-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J-R4/H-Fx-Money-Managerial-App/issues"
+  },
+  "homepage": "https://github.com/J-R4/H-Fx-Money-Managerial-App#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "sequelize": "^6.5.0"
+  }
+}
