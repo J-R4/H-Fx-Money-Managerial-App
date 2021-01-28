@@ -1,4 +1,4 @@
-const { hash, compare } = require('bcryptjs');
+const { hash, compare } = require('../helpers/bcrypt.js');
 const { User } = require('../models');
 
 class IndexController {
@@ -16,7 +16,7 @@ class IndexController {
             last_name: req.body.last_name,
             birth_date: req.body.birth_date,
             email: req.body.email,
-            password: req.body.password,
+            password: hash(req.body.password),
         };
         // console.log(userInput.password);
 
@@ -39,9 +39,12 @@ class IndexController {
         User.findOne({ where: { email: email } })
             .then((user) => {
                 if (compare(password, user.password)) {
-                    req.app.locals.isLogin = true;
+                    req.session.user = true;
                 }
-                res.send(user);
+                console.log(password);
+                console.log(user.password);
+                // res.redirect('/user');
+                res.send('berhasil berhasil berhasil uyey');
             })
             .catch((err) => {
                 res.send(err.message);
