@@ -12,7 +12,7 @@ router.post('/registration', IndexController.postRegistration); // error = relat
 router.get('/login', IndexController.login);
 router.post('/login', IndexController.postLogin);
 
-router.get('/user/', auth, UserController.userPage);
+router.get('/user', UserController.userPage);
 
 // router.get('/user/deposit/:id', UserController.deposit);
 

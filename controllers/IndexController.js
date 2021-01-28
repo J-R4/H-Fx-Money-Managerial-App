@@ -18,7 +18,7 @@ class IndexController {
             email: req.body.email,
             password: hash(req.body.password),
         };
-        // console.log(userInput.password);
+        console.log(userInput.password, '<<<<<<<');
 
         User.create(userInput)
             .then((data) => {
@@ -40,13 +40,14 @@ class IndexController {
             .then((user) => {
                 if (compare(password, user.password)) {
                     req.session.user = true;
+                    req.session.userId = user.id
                     console.log('ini di if fo');
-                    // res.redirect('/user');
-                    res.send('ini loing');
+                    res.redirect('/user');
+                    // res.send('ini loing');
                 } else {
                     console.log('ini di if else');
-                    // res.redirect('/login');
-                    res.send('ini login');
+                    res.redirect('/login');
+                    // res.send('ini login');
                 }
             })
             .catch((err) => {
