@@ -1,28 +1,24 @@
 const router = require('express').Router();
-const IndexController = require('../controllers/IndexController.js'); // kurang handle di registrasi dan login
-const UserController = require('../controllers/UserController.js');
 
-router.get('/', IndexController.homePage);
+const Controller = require('../controllers');
+const authIn = require('../middleware/authIn.js');
 
-router.get('/registration', IndexController.registration);
-router.post('/registration', IndexController.postRegistration); // error = relation "users" does not exist, when submit
+router.get('/', Controller.home);
 
-router.get('/login', IndexController.login);
-router.post('/login', IndexController.postLogin);
+router.get('/login', Controller.login);
+router.post('/login', Controller.loginPost);
+router.get('/logout', Controller.logout);
 
-// router.get('/user/:id', (req, res, next) => {
-//         console.log('check login');
-//         if (req.app.locals.isLogin) {
-//             next();
-//         } else {
-//             res.redirect('/login');
-//         }
-//     }, UserController.userPage);
+router.get('/user', authIn, Controller.banklist);
+router.get('/delete', Controller.deleteAccount);
 
-// router.get('/user/deposit/:id', UserController.deposit);
+router.get('/transfer', Controller.transfer);
+router.post('/transfer', Controller.postTransfer);
 
-// router.get('/user/transfer/:id', UserController.transfer);
+router.get('/register', Controller.register);
+router.post('/register', Controller.registerPost);
 
-// router.get('/user/destroy/:id',UserController.destroy)
+router.get('/addBank', Controller.addBank);
+router.post('/addBank', Controller.addBankPost);
 
 module.exports = router;

@@ -2,7 +2,7 @@
     "development": {
         "username": "postgres",
         "password": "love",
-        "database": "pair-project",
+        "database": "moneyapp",
         "host": "localhost",
         "dialect": "postgres"
     },
@@ -14,10 +14,15 @@
         "dialect": "postgres"
     },
     "production": {
-        "username": "postgres",
-        "password": "love",
+        "username": "root",
+        "password": null,
         "database": "database_production",
         "host": "127.0.0.1",
-        "dialect": "postgres"
+        "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": {
+                "rejectUnauthorized": false
+            }
+        }
     }
 }

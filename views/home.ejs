@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="simple.css" />
         <title>Home Page</title>
     </head>
     <body>
-        <h1>Welcome to H-Fx Money Managerial App !</h1>
-        <a href="/registration">Registration</a> - <a href="/login">Login</a>
+        <div id="mainContentArea">
+            <div id="contentBox">
+                <div id="title">HFx</div>
+
+                <div id="linkGroup"><%- include('./partials/homeBar.ejs') %></div>
+
+                <div id="blueBox">
+                    <div id="header"></div>
+                    <br />
+                    <div class="contentTitle">HFx Money Managerial App</div>
+                    <div class="pageContent">
+                        <p>This Application is for those that want manage all their bank account in one place</p>
+                        <p>Try all the feature here !</p>
+                        <p>
+                            In this Application you can register on the register page, <br />
+                            This application will help you login your account on login page, <br />
+                            It can help to see all your bank account in every bank that had join relation with our
+                            company <br />
+                            This application can help you transfer to other user nicely ! <br />
+                            Do a simple click and a little type, voila its all done. <br />
+                            enjoy !
+                        </p>
+                    </div>
+                    <div id="footer">
+                        <a href="/">Joshua Fanera</a> -
+                        <a href="/">Rinaldi Ardian</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

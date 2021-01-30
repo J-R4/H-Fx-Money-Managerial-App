@@ -1,57 +1,64 @@
 'use strict';
-// const hash = require('../helpers/bcrypt.js');
-
-const { Model } = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class User extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
-        static associate(models) {
-            // define association here
-            User.belongsToMany(models.Bank, {
-                through: models.HFx,
-            });
-        }
+  class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      User.belongsToMany(models.Bank, {
+        through: models.UserBank
+      })
     }
-    User.init(
-        {
-            first_name: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            lastName: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            birth_date: {
-                type: DataTypes.DATE,
-            },
-            email: {
-                type: DataTypes.STRING,
-                unique: true,
-                allowNull: false,
-            },
-            password: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            balance: {
-                type: DataTypes.INTEGER,
-                defaultValue: 0,
-            },
-        },
-        {
-            sequelize, // We need to pass the connection instance
-            modelName: 'User', // We need to choose the model name
-            timestamps: true,
-            underscored: true,
+  };
+  User.init({
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'name must not be empty'
         }
-    );
-    // User.addHook('beforeCreate', (user, options) => {
-    //     user.password = hash(user.password);
-    // });
-    return User;
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'email must not be empty'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'password must not be empty'
+        }
+      }
+    }
+  }, {
+    hooks: {
+      beforeCreate: (user, options) => {
+        let str = ''
+        for(let i= 0; i< user.name.length; i++){
+          if(i === 0){
+            str += user.name[i].toUpperCase()
+          }else
+          str += user.name[i]
+        }
+        user.name = str
+      }
+    },
+    sequelize,
+    modelName: 'User',
+  });
+  return User;
 };

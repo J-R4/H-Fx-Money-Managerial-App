@@ -1,1 +1,0 @@
-# H-Fx-Money-Managerial-App
