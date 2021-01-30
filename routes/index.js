@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const Controller = require('../controllers');
 const authIn = require('../middleware/authIn.js');
+const authOut = require('../middleware/authOut');
 
 router.get('/', Controller.home);
 
 router.get('/login', Controller.login);
 router.post('/login', Controller.loginPost);
-router.get('/logout', Controller.logout);
+router.get('/logout', authOut, Controller.logout);
 
 router.get('/user', authIn, Controller.banklist);
 router.get('/delete', Controller.deleteAccount);

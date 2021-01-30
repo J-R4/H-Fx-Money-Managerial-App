@@ -1,5 +1,7 @@
 const { User, Bank, UserBank } = require('../models');
 const { hash, compare } = require('../helpers/bcrypt.js');
+const nodemailer = require('nodemailer');
+
 class Controller {
     static home(req, res) {
         res.render('home');
@@ -13,13 +15,8 @@ class Controller {
                 },
             ],
         })
-
             .then((data) => {
-                // console.log(data[0].Banks);
                 res.render('banklist', { banks: data.Banks, name: req.session.name });
-            })
-            .catch((err) => {
-                res.send(err);
             })
             .catch((err) => {
                 res.send(err);
@@ -35,6 +32,32 @@ class Controller {
         const hashedPassword = hash(password);
         User.create({ name, email, password: hashedPassword })
             .then((_) => {
+                // if (req.body) {
+                //     function main() {
+                //         let testAccount = nodemailer.createTestAccount();
+                //         let transporter = nodemailer.createTransport({
+                //             host: 'smtp.ethereal.email',
+                //             port: 587,
+                //             secure: false, // true for 465, false for other ports
+                //             auth: {
+                //                 user: testAccount.user, // generated ethereal user
+                //                 pass: testAccount.pass, // generated ethereal password
+                //             },
+                //         });
+                //         let info = transporter.sendMail({
+                //             from: 'joshuafanera@gmail.com', // sender address
+                //             to: email, // list of receivers
+                //             subject: 'Thank You for Trusting H-Fx ✔', // Subject line
+                //             text: `Hello ${name}, its good to see you using our application,
+                //         if you had any trouble you can see at the Home page of the application`, // plain text body
+                //         });
+                //         console.log('Message sent: %s', info.messageId);
+                //         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                //     }
+                //     main().catch(console.error);
+
+                //     res.redirect('/login');
+                // } else
                 res.redirect('/login');
             })
             .catch((err) => res.send(err));
@@ -43,16 +66,13 @@ class Controller {
     static addBank(req, res) {
         Bank.findAll()
             .then((data) => {
-                // console.log(data, 'data>>>>>>>>>>');
                 res.render('addbanks', { banks: data, name: req.session.name });
             })
             .catch((err) => res.send(err));
     }
 
     static addBankPost(req, res) {
-        console.log(req.session.userId, 'asdfadfadsf>>>>>>');
         let { bank_name, balances } = req.body;
-        // console.log(balances, 'balanceee>>>>>>>>');
         UserBank.create({
             UserId: req.session.userId,
             BankId: +bank_name,
@@ -69,7 +89,6 @@ class Controller {
     }
 
     static loginPost(req, res) {
-        // const {email, password} = req.body
         User.findOne({
             where: {
                 email: req.body.email,
