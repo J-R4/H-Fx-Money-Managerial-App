@@ -1,13 +1,14 @@
-//@ts-check
 const express = require('express');
 const app = express();
-const PORT = 3000;
-const router = require('./routes/index.js');
+const port = 3000;
+const router = require('./routes');
 const session = require('express-session');
+const path = require('path');
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(
     session({
         secret: 'keyboard cat',
@@ -15,9 +16,11 @@ app.use(
         saveUninitialized: true,
     })
 );
+app.use('/', router, express.static(path.join(__dirname, 'views')));
 
-app.use('/', router);
-
-app.listen(PORT, () => {
-    console.log(`app Listening on: http://localhost:${PORT}`);
+app.listen(port, (err) => {
+    if (err) throw err;
+    else {
+        console.log('app listening on port' + ' ' + port);
+    }
 });

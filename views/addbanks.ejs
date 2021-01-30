@@ -3,12 +3,12 @@
     <head>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="simple.css" />
-        <title>Transfer Page</title>
+        <title>Set Bank Account</title>
     </head>
     <body>
         <div id="mainContentArea">
             <div id="contentBox">
-                <div id="title">Transfer</div>
+                <div id="title">Set Bank Account</div>
 
                 <div id="linkGroup"><%- include('./partials/navbar.ejs') %></div>
 
@@ -17,21 +17,17 @@
                     <br />
                     <div class="contentTitle"></div>
                     <div class="pageContent">
-                        <form action="/transfer" method="POST">
-                            <label for="targetemail">Input the Email of the Person you want to transfer :</label><br />
-                            <input type="email" name="targetemail" id="targetemail" /><br /><br />
-
-                            <label for="transferamount">Transfer Amount</label><br />
-                            <input type="number" name="transferamount" id="transferamount" /><br /><br />
-
-                            <label for="bank">Bank</label><br />
-                            <select name="bank" id="bank">
+                        <form action="/addbank" method="POST">
+                            <label for="bank_name"></label><br />
+                            <select name="bank_name" id="bank_name">
                                 <%for(let i = 0; i < banks.length; i++){%>
                                 <option value="<%= banks[i].id%>"><%= banks[i].bank_name%></option>
                                 <%}%></select
                             ><br /><br />
+                            <label for="balances">Balance</label><br />
+                            <input type="number" name="balances" id="balances" /><br /><br />
 
-                            <input type="submit" value="Transfer" />
+                            <input type="submit" />
                             <div class="whites">.</div>
                         </form>
                     </div>

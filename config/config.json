@@ -1,23 +1,28 @@
 {
     "development": {
-        "username": "ayudyatriastika",
-        "password": "postgres",
-        "database": "HFx",
+        "username": "postgres",
+        "password": "love",
+        "database": "moneyapp",
         "host": "localhost",
         "dialect": "postgres"
     },
     "test": {
-        "username": "postgres",
-        "password": "love",
+        "username": "root",
+        "password": null,
         "database": "database_test",
         "host": "127.0.0.1",
-        "dialect": "mysql"
+        "dialect": "postgres"
     },
     "production": {
-        "username": "postgres",
-        "password": "love",
+        "username": "root",
+        "password": null,
         "database": "database_production",
         "host": "127.0.0.1",
-        "dialect": "mysql"
+        "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": {
+                "rejectUnauthorized": false
+            }
+        }
     }
 }

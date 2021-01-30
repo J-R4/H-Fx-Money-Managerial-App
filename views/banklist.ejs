@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="simple.css" />
+        <title>Bank List</title>
+    </head>
+    <body>
+        <div id="mainContentArea">
+            <div id="contentBox">
+                <div id="title">Enjoy, <%= name %> !</div>
+
+                <div id="linkGroup"><%- include('./partials/navbar.ejs') %></div>
+
+                <div id="blueBox">
+                    <div id="header"></div>
+                    <br />
+                    <div class="contentTitle"></div>
+                    <div class="pageContent">
+                        <table border="1">
+                            <tr>
+                                <th>Bank Name</th>
+                                <th>Balance</th>
+                                <th>Action</th>
+                            </tr>
+                            <%for(let i = 0; i < banks.length; i++){ %>
+                            <tr>
+                                <td><%= banks[i].bank_name%></td>
+                                <td><%= banks[i].UserBank.balance%></td>
+                                <td><a href="/transfer">Transfer</a></td>
+                            </tr>
+                            <%}%>
+                        </table>
+                        <br /><br />
+                        <button type="button" onclick="location.href='//localhost:3000/addbank';">
+                            Add Bank Account
+                        </button>
+                        <div class="whites">.</div>
+                        <a href="/delete" class="delete">===Delete Account=== </a>
+                    </div>
+                    <div id="footer">
+                        <a href="/">Joshua Fanera</a> -
+                        <a href="/">Rinaldi Ardian</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
