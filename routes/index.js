@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const Controller = require('../controllers');
 const authIn = require('../middleware/authIn.js');
 const authOut = require('../middleware/authOut');
